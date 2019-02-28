@@ -22,7 +22,7 @@ import com.codename1.charts.util.ColorUtil;
 				System.exit(0);
 		}
 		public void quitGame() {
-			System.out.println("do you wish to exit? (y/n)");
+			System.out.println("Do you wish to exit? (y/n)");
 			isExit=true;
 		}
 		public void dontQuit() {
