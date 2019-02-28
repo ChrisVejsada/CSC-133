@@ -101,7 +101,7 @@ public class Robot extends Moveable implements ISteerable {
 	
 	public String toString() {
 		String parentDesc = super.toString();
-		String myDesc = " maxSpeed=" + maximumSpeed + " steeringDirection="+steeringDirection+ " energyLevel="+ energyLevel+ " damageLevel=" + damageLevel + "lives:  "+lives;
+		String myDesc = " maxSpeed=" + maximumSpeed + " steeringDirection="+steeringDirection+ " energyLevel="+ energyLevel+ " damageLevel=" + damageLevel;
 		return "Robot:" + parentDesc + myDesc;
 		
 	}

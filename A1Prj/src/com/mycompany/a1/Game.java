@@ -31,7 +31,8 @@ public class Game extends Form {
 				myTextField.clear();
 				switch(sCommand.charAt(0)) {
 				case 'x':
-					gw.exit();
+					System.out.println("Please Confirm to exit");
+					myLabel.setText("Please enter y or n");
 					break;
 				
 				case 'a':

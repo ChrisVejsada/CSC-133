@@ -13,7 +13,7 @@ import com.codename1.charts.util.ColorUtil;
 		private ArrayList<GameObject> gameObjectList = new ArrayList<GameObject>();
 		private int baseSize = 15;
 		private int robotSize = 25;
-		Timer timer = new Timer();
+		//Timer timer = new Timer();
 		private boolean isExit = false;
 		
 		//Exits for the game
