@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"com.mycompany.a1","l":"Starter"}]
