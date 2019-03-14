@@ -2,7 +2,7 @@ package com.mycompany.a2;
 
 /*
  * Chris Vejsada
- * A2Prj
+ * A2Prj rename
  */
 import static com.codename1.ui.CN.*;
 import com.codename1.ui.Display;
