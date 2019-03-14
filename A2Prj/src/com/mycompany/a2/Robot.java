@@ -99,7 +99,7 @@ public class Robot extends Moveable implements ISteerable {
 	}
 	
 	
-	public String toString() {
+	public String toString() {//prints outs the data of the current tick
 		String parentDesc = super.toString();
 		String myDesc = " maxSpeed=" + maximumSpeed + " steeringDirection="+steeringDirection+ " energyLevel="+ energyLevel+ " damageLevel=" + damageLevel;
 		return "Robot:" + parentDesc + myDesc;
