@@ -2,7 +2,7 @@ package com.mycompany.a2;
 
 /*
  * Chris Vejsada
- * A2Prj rename
+ * A2Prj rename and A1Prj fixed from commit erros
  */
 import static com.codename1.ui.CN.*;
 import com.codename1.ui.Display;
