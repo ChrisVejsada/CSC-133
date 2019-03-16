@@ -15,7 +15,7 @@ public class CommandDroneCollision extends Command{
     }
 
     /**
-     * override for action
+     * override for actionevent
      */
     @Override
     public void actionPerformed(ActionEvent ev){
