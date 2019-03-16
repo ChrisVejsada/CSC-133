@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.mycompany.a2;
 
 import com.codename1.ui.Command;
@@ -26,3 +27,30 @@ public class CommandDroneCollision extends Command {
 		}
 		
 }
+=======
+package com.mycompany.a2;
+
+import java.awt.event.ActionEvent;
+
+public class CommandDroneCollision extends Command{
+    private GameWorld gw;
+
+    /**
+     * constuctor for drone
+     * @param gw
+     */
+    public CommandDroneCollision(GameWorld gw){
+        super("Collided with Robot");
+        this.gw = gw;
+    }
+
+    /**
+     * override for actionevent
+     */
+    @Override
+    public void actionPerformed(ActionEvent ev){
+        gw.robotCollision('d');
+    }
+}
+
+>>>>>>> branch 'master' of https://github.com/ChrisVejsada/CSC-133.git
