@@ -1,30 +1,3 @@
-<<<<<<< HEAD
-package com.mycompany.a2;
-
-import com.codename1.ui.Command;
-import com.codename1.ui.events.ActionEvent;
-
-public class CommandEnergyStationCollision extends Command {
-	
-	private GameWorld gw;
-	/**
-	 * constuctor for energy
-	 * @param gw
-	 */
-	public CommandEnergyStationCollision(GameWorld gw) {
-		super("Collided with Energy Station");
-		this.gw = gw;
-	}
-	
-	/**
-	 * @Override for action
-	 */
-	@Override
-	public void actionPerformed(ActionEvent ev) {
-		gw.energyStationCollision();
-	}
-}
-=======
 package com.mycompany.a2;
 
 import com.codename1.ui.Command;
@@ -35,7 +8,7 @@ public class CommandEnergyStationCollision extends Command {
     private GameWorld gw;
 
     /**
-     * constuctor for food
+     * constuctor for energy
      * @param gw
      */
     public CommandEnergyStationCollision(GameWorld gw){
@@ -44,12 +17,12 @@ public class CommandEnergyStationCollision extends Command {
     }
 
     /**
-     * @Override for action listioner
-     */
+     * @Override for action
+     */ 
     @Override
     public void actionPerfomed(ActionEvent ev){
         gw.energyStationCollision();
     }
 
 }
->>>>>>> branch 'master' of https://github.com/ChrisVejsada/CSC-133.git
+
