@@ -5,24 +5,24 @@ import com.codename1.ui.events.ActionEvent;
 
 public class CommandEnergyStationCollision extends Command {
 
-    private GameWorld gw;
 
-    /**
-     * constuctor for energy
-     * @param gw
-     */
-    public CommandEnergyStationCollision(GameWorld gw){
-        super("Collided with Energy Station");
-        this.gw = gw;
-    }
+	private GameWorld gw;
 
-    /**
-     * @Override for action
-     */ 
-    @Override
-    public void actionPerfomed(ActionEvent ev){
-        gw.energyStationCollision();
-    }
-
+	/**
+	 * constructor for energy
+	 * @param gw
+	 */
+	public CommandEnergyStationCollision(GameWorld gw) {
+		super("Collide with Energy Station");
+		this.gw = gw;
+	}
+	
+	/**
+	 * override for action
+	 */
+	@Override
+	public void actionPerformed(ActionEvent ev) {
+		gw.energyStationCollision();
+	}
+	
 }
-
