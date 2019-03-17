@@ -15,15 +15,16 @@ import com.codename1.charts.util.ColorUtil;
 		private int counter = 0;
 		//private Robot robot;
 		private PlayerRobot robot;
-		private GameObjectCollection gameObjectList = new ArrayList<GameObject>();
+		//private GameObjectCollection gameObjectList = new ArrayList<GameObject>();
 		private int baseSize = 15;
 		private int robotSize = 25;
 		//Timer timer = new Timer();
 		private boolean isExit = false;
+		GameObjectCollection gameObjectList;
 		
 		public GameWorld() {
 			gameObjectList = new GameObjectCollection();
-			//robot = new PlayerRobot(robotSize, 0)
+			robot = new PlayerRobot(robotSize, 0, 500, 500);
 		}
 		
 		//Exits for the game
@@ -55,7 +56,7 @@ import com.codename1.charts.util.ColorUtil;
 		 */
 		public void init() {
 		//clears the gameObjectList before play
-			gameObjectList.clear();
+			//gameObjectList.clear();
 			
 			//Creating Static objects
 			gameObjectList.add(new Base(baseSize, 1,500, 500));
@@ -116,7 +117,9 @@ import com.codename1.charts.util.ColorUtil;
 				robot.setEnergyLevel(300);//reduces robot evergy level by 1
 				counterTime();
 			
-				for(GameObject temp: gameObjectList) {
+				IIterator elements = gameObjectList.getIterator();
+				while ( elements.hasNext()) {
+					GameObject temp = ((GameObject) elements.getNext());
 					if(temp instanceof Moveable) {
 						if(temp instanceof Drone) {
 							((Moveable) temp).setHeading(((Moveable) temp).getHeading());
@@ -137,8 +140,8 @@ import com.codename1.charts.util.ColorUtil;
 				}
 			}
 			notifyobs();
-
 		}
+		
 		public int getRobotBaseReached() {
 			return robot.getLastBase();
 		}
@@ -195,7 +198,9 @@ import com.codename1.charts.util.ColorUtil;
 		}
 		
 		public void energyStationCollision() {
-			for(GameObject temp: gameObjectList ) {
+			IIterator iterator = gameObjectList.getIterator();
+			while(iterator.hasNext()) {
+				GameObject temp = (GameObject) iterator.getNext();
 				if(temp instanceof EnergyStation) {
 					if(((EnergyStation) temp).getCapacity()!=0) {
 						robot.setEnergyLevel(((EnergyStation) temp).getCapacity());

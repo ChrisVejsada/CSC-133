@@ -52,6 +52,9 @@ public class Robot extends Moveable implements ISteerable {
 	public int getStearingDirection() {
 		return steeringDirection;
 	}
+	public void setDamage(int damage) {
+		damageLevel += damage;
+	}
 	
 	@Override
 	public void changeHeading(char s) {
@@ -67,7 +70,7 @@ public class Robot extends Moveable implements ISteerable {
 		if(speed <= (maximumSpeed) && speed >=0 )
 			super.setSpeed(speed);
 	}
-	private void checkSpeed() {//checks the speed when the robot takes damage
+	protected void checkSpeed() {//checks the speed when the robot takes damage
 		
 		maximumSpeed=(int) (30-(30*(damageLevel/100.00)));
 		if (getSpeed()>maximumSpeed)

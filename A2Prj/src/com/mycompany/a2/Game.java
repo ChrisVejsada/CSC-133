@@ -19,10 +19,19 @@ public class Game<mapView> extends Form {
 	private MapView mapView;
 	public Game() {
 		gw = new GameWorld();
-		mapView = new MapView(gw);
 		scoreView = new ScoreView(gw);
+		mapView = new MapView(gw);
 		//gw.init();
 		//play();
+		
+		Command exitCommand = new CommandExit(gw);
+		Command accelerateCommand = new CommandAccelerate(gw);
+		Command leftCommand = new CommandLeftHeading(gw);
+		Command brakeCommand = new CommandBrake(gw);
+		Command rightCommand = new CommandRightHeading(gw);
+		Command robocollideCommand = new CommandDroneCollision(gw);
+		Command energyCommand = new CommandEnergyStationCollision(gw);
+		Command tickCommand = new CommandGameClockTick(gw);
 		
 		this.setLayout(new BorderLayout());
 		addKeyListener('x', exitCommand);
@@ -33,15 +42,6 @@ public class Game<mapView> extends Form {
 		addKeyListener('f', energyCommand);
 		addKeyListener('g', robocollideCommand);
 		addKeyListener('t', tickCommand);
-		
-		Command exitCommand = new CommandExit(gw);
-		Command accelerateCommand = new CommandAccelerate(gw);
-		Command leftCommand = new CommandLeftHeading(gw);
-		Command brakeCommand = new CommandBrake(gw);
-		Command rightCommand = new CommandRightHeading(gw);
-		Command robocollideCommand = new CommandDroneCollision(gw);
-		Command energyCommand = new CommandEnergyStationCollision(gw);
-		Command tickCommand = new CommandGameClockTick(gw);
 		
 		//West Container
 		Container westContainer = new Container();
