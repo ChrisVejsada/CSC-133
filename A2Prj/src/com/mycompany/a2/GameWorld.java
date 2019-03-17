@@ -6,27 +6,48 @@ import java.util.Random;
 
 import com.codename1.charts.util.ColorUtil;
 	
-	public class GameWorld {
+	public class GameWorld extends Obervable {
+		private boolean soundOn = false;
+		private int mapHeight;
+		private int mapWidth;
+		private int lives;
 		private Random rand = new Random();
 		private int counter = 0;
 		private Robot robot;
+		private PlayerRobot robot;
 		private ArrayList<GameObject> gameObjectList = new ArrayList<GameObject>();
 		private int baseSize = 15;
 		private int robotSize = 25;
 		//Timer timer = new Timer();
 		private boolean isExit = false;
 		
+		public GameWorld() {
+			gameObjectList = new GameObjectCollection();
+			//robot = new PlayerRobot(robotSize, 0)
+		}
+		
 		//Exits for the game
 		public void exit() {
 			if (isExit)
 				System.exit(0);
 		}
+		
 		public void quitGame() {
 			System.out.println("Do you wish to exit? (y/n)");
 			isExit=true;
 		}
+		
 		public void dontQuit() {
 			isExit=false;
+		}
+		
+		public void setMapHeight(int height) {
+			this.mapHeight = height;
+			System.out.println("" + height);
+		}
+		
+		public void setMapWidth(int width) {
+			this.mapWidth = width;
 		}
 		
 		/**
@@ -45,7 +66,13 @@ import com.codename1.charts.util.ColorUtil;
 			gameObjectList.add(new EnergyStation(randObjSize(),randX(),randY()));
 			
 			//creates player
-			gameObjectList.add(robot = new Robot(robotSize, 0, 500, 500));
+			gameObjectList.add(robot);
+			
+			//creat npr
+			gameObjectList.add(new NonPlayerRobot(robotSize, 0, 500, 550));
+			gameObjectList.add(new NonPlayerRobot(robotSize, 0, 500, 450));
+			gameObjectList.add(new NonPlayerRobot(robotSize, 0, 550, 500));
+			
 			
 			//creates attack drones
 			gameObjectList.add(new Drone(randObjSize(), randX(), randY()));
@@ -63,14 +90,26 @@ import com.codename1.charts.util.ColorUtil;
 			
 		}
 		public void map() {
-			
-			for (GameObject temp: gameObjectList) {
-				System.out.println(temp);
+			IIterator elements = gameObjectList.getIterator();
+			while (elements.hasNext()) {
+				GameObject temp = ((GameObject) elements.getNext());
+				System.out.println(temp.toString());
 			}
 		}
+		
 		private void lifeReset() {//resets drone to start base to continue where left off
 			robot.resetRobot();
 		}
+		
+		public void toggleSound() {
+			if(!soundOn)
+				soundOn=true;
+			else
+				soundOn=false;
+			this.setChanged();
+			this.notifyObservers();
+		}
+
 		public void tick() {
 			if(robot.getDamageLevel()!=100 && robot.getEnergyLevel() !=0 && robot.getLives()!=0) {
 				robot.setHeading(robot.getStearingDirection());
@@ -97,29 +136,62 @@ import com.codename1.charts.util.ColorUtil;
 					System.out.println("Game Over");
 				}
 			}
+			notifyobs();
 
+		}
+		public int getRobotBaseReached() {
+			return robot.getLastBase();
+		}
+		public int getEnergyLevel() {
+			return robot.getEnergyLevel();
+		}
+		public int getRobotHealthLevel() {
+			return robot.getDamageLevel();
+		}
+		public boolean isSound() {
+			return soundOn;
+		}
+		public void robotCollision(char with) {
+			robot.collision(with);
+			IIterator iterator = gameObjectList.getIterator();
+			while(iterator.hasNext()) {
+				GameObject temp = (GameObject) iterator.getNext();
+				if(temp instanceof NonPlayerRobot) {
+					((NonPlayerRobot) temp).collision('r');
+					break;
+				}
+			}
+			notifyobs();
 		}
 		//Creating randInts for the game
 		private int randX() {
-			return rand.nextInt(1024);
+			return rand.nextInt(mapWidth);
 		}
 		private int randY() {
-			return rand.nextInt(768);
+			return rand.nextInt(mapHeight);
 		}
 		private int randObjSize() {
 			return 15+rand.nextInt(25);
 		}
-		public void robotCollision(char with) {
+		/*public void robotCollision(char with) {
 			robot.collision(with);
-		}
+		}*/
 		public void baseCollision(int baseNumber) {
 			robot.baseCollision(baseNumber);
 		}
 		public void setRobotSpeed(int x) {
 			robot.setSpeed(robot.getSpeed()+x);
+			notifyobs();
 		}
 		public void changeHeading(char change) {
 			robot.changeHeading(change);
+			notifyobs();
+		}
+		public int getLives() {
+			return robot.getLives();
+		}
+		public int getClock() {
+			return counter;
 		}
 		
 		public void energyStationCollision() {
@@ -143,6 +215,10 @@ import com.codename1.charts.util.ColorUtil;
 			counter += 1;
 		}
 		
+		private void notifyobs() {
+			this.setChanged();
+			this.notifyObservers();
+		}
 		
 		
 }
