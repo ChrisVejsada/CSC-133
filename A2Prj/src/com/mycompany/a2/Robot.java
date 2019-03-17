@@ -30,6 +30,12 @@ public class Robot extends Moveable implements ISteerable {
 	public int getLives() {
 		return lives;
 	}
+	public int getRed(){
+		return red;
+	}
+	public void setRed(int addIt) {
+		red -= addIt;
+	}
 	
 	public int getLastBase() {
 		return lastBaseReached;

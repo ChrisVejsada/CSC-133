@@ -6,7 +6,7 @@ import java.util.Random;
 
 import com.codename1.charts.util.ColorUtil;
 	
-	public class GameWorld extends Obervable {
+	public class GameWorld extends Observable {
 		private boolean soundOn = false;
 		private int mapHeight;
 		private int mapWidth;
@@ -207,10 +207,7 @@ import com.codename1.charts.util.ColorUtil;
 			}
 			gameObjectList.add(new EnergyStation(randObjSize(), randX(), randY()));
 		}
-		/*public void droneCollision() {
-			robot.hitDrone();
-		}
-		*/
+
 		public void counterTime() {
 			counter += 1;
 		}
