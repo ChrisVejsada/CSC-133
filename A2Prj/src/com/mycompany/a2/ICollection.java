@@ -1,5 +1,10 @@
 package com.mycompany.a2;
 
-public class ICollection {
+public interface ICollection {
+	
+	public void add(Object object);
+	
+	public IIterator getIterator();
+	
 
 }

@@ -1,5 +1,13 @@
 package com.mycompany.a2;
 
-public class IIterator {
+/**
+ * Class for iiterator for has/get next
+ * @author green
+ *
+ */
+public interface IIterator {
+	public boolean hasNext();
+	public Object getNext();
+	IIterator getIterator();
 
 }

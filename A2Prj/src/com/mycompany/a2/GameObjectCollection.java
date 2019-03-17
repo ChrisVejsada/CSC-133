@@ -33,6 +33,16 @@ public class GameObjectCollection implements ICollection {
 		        return new Iterator();
 		    }
 	}
+	@Override
+	public void add(Object object) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public IIterator getIterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 }

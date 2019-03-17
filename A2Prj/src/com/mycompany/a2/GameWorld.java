@@ -2,8 +2,8 @@ package com.mycompany.a2;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.ArrayList;
+import java.util.Observable;
 import java.util.Random;
-
 import com.codename1.charts.util.ColorUtil;
 	
 	public class GameWorld extends Observable {
@@ -13,9 +13,9 @@ import com.codename1.charts.util.ColorUtil;
 		private int lives;
 		private Random rand = new Random();
 		private int counter = 0;
-		private Robot robot;
+		//private Robot robot;
 		private PlayerRobot robot;
-		private ArrayList<GameObject> gameObjectList = new ArrayList<GameObject>();
+		private GameObjectCollection gameObjectList = new ArrayList<GameObject>();
 		private int baseSize = 15;
 		private int robotSize = 25;
 		//Timer timer = new Timer();
