@@ -13,7 +13,7 @@ import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.plaf.Border;
 import java.util.Observable; 
 
-public class Game extends Form {
+public class Game<mapView> extends Form {
 	private GameWorld gw;
 	private ScoreView scoreView;
 	private MapView mapView;
