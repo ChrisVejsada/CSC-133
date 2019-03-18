@@ -32,6 +32,7 @@ public class Game extends Form {
 		Command brakeCommand = new CommandBrake(gw);
 		Command rightCommand = new CommandRightHeading(gw);
 		Command robocollideCommand = new CommandDroneCollision(gw);
+		Command nprcollideCommand = new CommandRobotCollision(gw);
 		Command energyCommand = new CommandEnergyStationCollision(gw);
 		Command tickCommand = new CommandGameClockTick(gw);
 		
@@ -58,6 +59,8 @@ public class Game extends Form {
 		accelerateButton.getAllStyles().setBgTransparency(255);
 		accelerateButton.getAllStyles().setMarginBottom(10); 
 		
+		
+		
 		//Left
 		Button leftButton = new Button("Left");
 		leftButton.setCommand(leftCommand);
@@ -66,6 +69,14 @@ public class Game extends Form {
 		leftButton.getAllStyles().setBgColor(ColorUtil.BLUE);
 		leftButton.getAllStyles().setBgTransparency(255);	
 		leftButton.getAllStyles().setMarginBottom(10);
+		
+		Button changeButton = new Button("Change Strategies");
+		//changeButton.setCommand(changeCommand);
+		westContainer.addComponent(changeButton);	
+		changeButton.getAllStyles().setFgColor(ColorUtil.WHITE);
+		changeButton.getAllStyles().setBgColor(ColorUtil.BLUE);
+		changeButton.getAllStyles().setBgTransparency(255);	
+		changeButton.getAllStyles().setMarginBottom(10);
 		
 		//East Container with brake and right
 		Container eastContainer = new Container();
@@ -90,15 +101,26 @@ public class Game extends Form {
 		rightButton.getAllStyles().setBgTransparency(255);	
 		rightButton.getAllStyles().setMarginBottom(10);
 		
+		Container centerContainer = new Container();
+		centerContainer.getAllStyles().setBorder(Border.createLineBorder(4,ColorUtil.MAGENTA));
 		
 		//South Container
 		Container southContainer = new Container();
 		southContainer.getAllStyles().setBorder(Border.createLineBorder(4, ColorUtil.GRAY));
 		southContainer.setLayout(new FlowLayout(Component.CENTER));
 		
+		//Collide with NPR
+		Button NPRButton = new Button("Collide with NPR");
+		southContainer.addComponent(NPRButton);
+		NPRButton.setCommand(nprcollideCommand);
+		NPRButton.getAllStyles().setFgColor(ColorUtil.WHITE);
+		NPRButton.getAllStyles().setBgColor(ColorUtil.BLUE);
+		NPRButton.getAllStyles().setBgTransparency(255);	
+		NPRButton.getAllStyles().setMarginRight(5);
+		
 		//Collide with base
 		Button baseButton = new Button("Collide with Base");
-		//vaseButton.setCommand(baseCommand);
+		//baseButton.setCommand(baseCommand);
 		baseButton.getAllStyles().setFgColor(ColorUtil.WHITE);
 		baseButton.getAllStyles().setBgColor(ColorUtil.BLUE);
 		baseButton.getAllStyles().setBgTransparency(255);	
@@ -135,7 +157,7 @@ public class Game extends Form {
 		//setup the toolbar for the gui
 		Toolbar toolbar = new Toolbar();
 		this.setToolbar(toolbar);
-		toolbar.setTitle("Robo Track");
+		toolbar.setTitle("Robo Track ");
 		
 		//Acc,left and change 
 		toolbar.addCommandToSideMenu(accelerateCommand);
@@ -163,13 +185,120 @@ public class Game extends Form {
 
 
 
-		play();
+		
 	}	
 	private void play() {
-	}
-
-
-}
+		Label myLabel = new Label("Enter a Command:");
+		this.addComponent(myLabel);
+		final TextField myTextField = new TextField();
+		this.addComponent(myTextField);
+		this.show();
 		
+		myTextField.addActionListener(new ActionListener(){
+		
+			public void actionPerformed(ActionEvent evt) {
+				
+			
+				String sCommand = myTextField.getText().toString();
+				myTextField.clear();
+				switch(sCommand.charAt(0)) {
+				case 'x':
+					//System.out.println("Please Confirm to exit");
+					myLabel.setText("Please enter y or n");
+					gw.quitGame();
+					break;
+				
+				case 'a':
+					gw.setRobotSpeed(2);
+					break;
+				
+				case 'b':
+					gw.setRobotSpeed(-2);
+					break;
+				
+				case 'l':
+					gw.changeHeading('l');
+					break;
+				
+				case 'r':
+					gw.changeHeading('r');
+					break;
+				
+				case 'c':
+					gw.robotCollision('r');
+					break;
+				
+				case '1':
+					gw.baseCollision(1);
+					break;
+				
+				case '2':
+					gw.baseCollision(2);
+					break;
+				
+				case '3':
+					gw.baseCollision(3);
+					break;
+				
+				case '4':
+					gw.baseCollision(4);
+					break;
+				
+				case '5':
+					gw.baseCollision(5);
+					break;
+				
+				case '6':
+					gw.baseCollision(6);
+					break;
+				
+				case '7':
+					gw.baseCollision(7);
+					break;
+				
+				case '8':
+					gw.baseCollision(8);
+					break;
+				
+				case '9':
+					gw.baseCollision(9);
+					break;
+				
+				case 'e':
+					gw.energyStationCollision();
+					break;
+				
+				case 'g':
+					gw.robotCollision('d');
+					break;
+				
+				case 't':
+					gw.tick();;
+					break;
+				
+				case 'd':
+					gw.display();
+					break;
+				
+				case 'm':
+					gw.map();
+					break;
+				
+				case 'n':
+					gw.dontQuit();
+					myLabel.setText("Enter a Command:");
+					break;
+				
+				case 'y':
+					gw.exit();
+					break;
+					
+				
+				}
+			}
+		});
+	}
+	
+}
 	
 	

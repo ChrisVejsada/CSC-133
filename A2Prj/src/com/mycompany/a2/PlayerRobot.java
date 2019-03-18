@@ -12,4 +12,8 @@ public class PlayerRobot extends Robot {
 		String parentDesc = super.toString();
 		return "Robot:" + parentDesc;
 	}
+	public void setLastbaseReached(int baseNum) {
+		// TODO Auto-generated method stub
+		
+	}
 }

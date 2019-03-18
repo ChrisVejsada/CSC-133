@@ -31,7 +31,7 @@ public class ScoreView extends Container implements Observer {
 		model = ((GameWorld) gw);
 		gw.addObserver(this);
 		this.setLayout(new FlowLayout(Component.CENTER));
-		this.getAllStyles().setBorder(Border.createLineBorder(4, ColorUtil.GRAY));
+		this.getAllStyles().setBorder(Border.createLineBorder(4, ColorUtil.MAGENTA));
 		this.setupLabels();
 		
 		this.add(livesLabel);
@@ -69,18 +69,17 @@ public void setupLabels() {
 		lastBaseValue.getAllStyles().setFgColor(ColorUtil.BLUE);
 
 		// show energy Level
-		energyLevelLabel = new Label("energy Level: ");
+		energyLevelLabel = new Label("Player Energy Level: ");
 		energyLevelValue = new Label("" + model.getEnergyLevel());
 		energyLevelLabel.getAllStyles().setFgColor(ColorUtil.BLUE);
 		energyLevelValue.getAllStyles().setFgColor(ColorUtil.BLUE);
 
 		
 		// show healthLevel
-		healthLevelLabel = new Label("Health Level: ");
+		healthLevelLabel = new Label("Damage Level: ");
 		healthLevelValue = new Label("" + model.getRobotHealthLevel());
 		healthLevelLabel.getAllStyles().setFgColor(ColorUtil.BLUE);
 		healthLevelValue.getAllStyles().setFgColor(ColorUtil.BLUE);
-
 		
 		soundLabel = new Label("Sound: ");
 		soundValue = new Label("" + model.isSound());

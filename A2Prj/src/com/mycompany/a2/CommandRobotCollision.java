@@ -11,7 +11,7 @@ public class CommandRobotCollision extends Command {
 	 * @param gw
 	 */
 	public CommandRobotCollision(GameWorld gw) {
-		super("Collided with robot");
+		super("Collided with NPR");
 		this.gw = gw;
 	}
 	

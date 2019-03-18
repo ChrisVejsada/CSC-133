@@ -1,7 +1,5 @@
 package com.mycompany.a2;
 
-import com.mycompany.a2.GameObject;
-
 public class Moveable extends GameObject{
 	
 	private int heading = 0;
@@ -13,23 +11,13 @@ public class Moveable extends GameObject{
 		//TODO auto gen
 	}
 	
-	public void move() {
+public void move() {
 		
-	
-		double tempX =(getX()+(Math.cos(Math.toRadians(90-heading)))*speed);
-		double tempY= getY()+(Math.sin(Math.toRadians(90-heading)))*speed;
+		double deltaX = (float)Math.cos(Math.toRadians(90 - this.getHeading())) * this.getSpeed();
+		double deltaY = (float)Math.sin(Math.toRadians(90 - this.getHeading())) * this.getSpeed();
 		
-		/// Makes sure the object isn't leaving the screen
-		if(tempX <= 1024 && tempY <= 786 && tempX >=0 && tempY >=0) {
-			setX(tempX);
-			setY(tempY);
-		}
-		else {
-			//change heading then call move again
-			heading -= 45;
-			move();
-			
-		}
+		this.setX(this.getX() + (float)deltaX);
+		this.setY(this.getY() + (float)deltaY);
 	}
 	/*
 	 * setter for speed

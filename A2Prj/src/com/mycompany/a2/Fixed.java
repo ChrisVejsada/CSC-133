@@ -2,7 +2,7 @@ package com.mycompany.a2;
 
 import com.mycompany.a2.GameObject;
 
-public class Fixed extends GameObject{
+public abstract class Fixed extends GameObject{
 	
 	/**
 	 * Constuctor for fixed

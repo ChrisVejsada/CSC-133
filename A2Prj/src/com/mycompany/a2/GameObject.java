@@ -1,7 +1,7 @@
 package com.mycompany.a2;
 import com.codename1.charts.util.*;
 import com.codename1.charts.util.ColorUtil;
-public class GameObject {
+public abstract class GameObject {
 	
 	private int myColor;
 	private double x = 0;

@@ -16,7 +16,7 @@ import com.codename1.charts.util.ColorUtil;
 		//private Robot robot;
 		private PlayerRobot robot;
 		private int clock = 0;
-		//private GameObjectCollection gameObjectList = new ArrayList<GameObject>();
+		private boolean soundChecked = false;
 		private int baseSize = 15;
 		private int robotSize = 25;
 		//Timer timer = new Timer();
@@ -96,6 +96,7 @@ import com.codename1.charts.util.ColorUtil;
 			
 		}
 		public void map() {
+			System.out.println();
 			IIterator elements = gameObjectList.getIterator();
 			while (elements.hasNext()) {
 				GameObject temp = ((GameObject) elements.getNext());
@@ -108,10 +109,7 @@ import com.codename1.charts.util.ColorUtil;
 		}
 		
 		public void toggleSound() {
-			if(!soundOn)
-				soundOn=true;
-			else
-				soundOn=false;
+			this.soundChecked = !(this.soundChecked);
 			this.setChanged();
 			this.notifyObservers();
 		}
@@ -158,9 +156,15 @@ import com.codename1.charts.util.ColorUtil;
 		public int getRobotHealthLevel() {
 			return robot.getDamageLevel();
 		}
-		public boolean isSound() {
-			return soundOn;
+		public String isSound() {
+			if (this.soundChecked) {
+				return " ON";
+			} else {
+				return " OFF";
+			}
+
 		}
+		
 		public void robotCollision(char with) {
 			robot.collision(with);
 			IIterator iterator = gameObjectList.getIterator();
@@ -188,6 +192,8 @@ import com.codename1.charts.util.ColorUtil;
 		}*/
 		public void baseCollision(int baseNumber) {
 			robot.baseCollision(baseNumber);
+			notifyobs();
+			
 		}
 		public void setRobotSpeed(int x) {
 			robot.setSpeed(robot.getSpeed()+x);
