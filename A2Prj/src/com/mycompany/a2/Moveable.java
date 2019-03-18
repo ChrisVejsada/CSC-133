@@ -1,6 +1,6 @@
 package com.mycompany.a2;
 
-public class Moveable extends GameObject{
+public abstract class Moveable extends GameObject{
 	
 	private int heading = 0;
 	private int speed = 0;

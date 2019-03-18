@@ -230,6 +230,16 @@ import com.codename1.charts.util.ColorUtil;
 			counter += 1;
 		}
 		
+		public void gameOverLoss() {
+			System.out.println("Game over, you failed!");
+			robot = null;
+			this.exit();
+		}
+		
+		public void gameOverWin() {
+			System.out.println("Game over, you win! Total time: " + this.clock);
+		}
+		
 		private void notifyobs() {
 			this.setChanged();
 			this.notifyObservers();
