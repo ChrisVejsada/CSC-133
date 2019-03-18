@@ -15,11 +15,13 @@ import com.codename1.charts.util.ColorUtil;
 		private int counter = 0;
 		//private Robot robot;
 		private PlayerRobot robot;
+		private int clock = 0;
 		//private GameObjectCollection gameObjectList = new ArrayList<GameObject>();
 		private int baseSize = 15;
 		private int robotSize = 25;
 		//Timer timer = new Timer();
-		private boolean isExit = false;
+		private boolean isExit = true;
+		private int winningBase = 4;
 		GameObjectCollection gameObjectList;
 		
 		public GameWorld() {
@@ -78,6 +80,9 @@ import com.codename1.charts.util.ColorUtil;
 			//creates attack drones
 			gameObjectList.add(new Drone(randObjSize(), randX(), randY()));
 			gameObjectList.add(new Drone(randObjSize(), randX(), randY()));
+			
+			this.setChanged();
+			this.notifyObservers();
 			
 			
 		}
@@ -141,6 +146,8 @@ import com.codename1.charts.util.ColorUtil;
 			}
 			notifyobs();
 		}
+		
+		
 		
 		public int getRobotBaseReached() {
 			return robot.getLastBase();

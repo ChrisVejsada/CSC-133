@@ -13,17 +13,19 @@ import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.plaf.Border;
 import java.util.Observable; 
 
-public class Game<mapView> extends Form {
+public class Game extends Form {
 	private GameWorld gw;
-	private ScoreView scoreView;
-	private MapView mapView;
+	private ScoreView sv;
+	private MapView mv;
 	public Game() {
 		gw = new GameWorld();
-		scoreView = new ScoreView(gw);
-		mapView = new MapView(gw);
+		sv = new ScoreView(gw);
+		mv = new MapView(gw);
+		gw.addObserver(mv); // register the map observer
+		gw.addObserver(sv);
 		//gw.init();
 		//play();
-		
+		this.setLayout(new BorderLayout());
 		Command exitCommand = new CommandExit(gw);
 		Command accelerateCommand = new CommandAccelerate(gw);
 		Command leftCommand = new CommandLeftHeading(gw);
@@ -33,7 +35,6 @@ public class Game<mapView> extends Form {
 		Command energyCommand = new CommandEnergyStationCollision(gw);
 		Command tickCommand = new CommandGameClockTick(gw);
 		
-		this.setLayout(new BorderLayout());
 		addKeyListener('x', exitCommand);
 		addKeyListener('a', accelerateCommand);
 		addKeyListener('b', brakeCommand);
@@ -97,7 +98,6 @@ public class Game<mapView> extends Form {
 		
 		//Collide with base
 		Button baseButton = new Button("Collide with Base");
-		
 		//vaseButton.setCommand(baseCommand);
 		baseButton.getAllStyles().setFgColor(ColorUtil.WHITE);
 		baseButton.getAllStyles().setBgColor(ColorUtil.BLUE);
@@ -154,10 +154,10 @@ public class Game<mapView> extends Form {
 		this.add(BorderLayout.WEST, westContainer);
 		this.add(BorderLayout.EAST, eastContainer);
 		this.add(BorderLayout.SOUTH, southContainer);
-		this.add(BorderLayout.NORTH, mapView);
-		this.add(BorderLayout.CENTER, scoreView);
-		gw.setMapHeight(mapView.getComponentForm().getHeight());
-		gw.setMapWidth(mapView.getComponentForm().getWidth());
+		this.add(BorderLayout.NORTH, mv);
+		this.add(BorderLayout.CENTER, sv);
+		gw.setMapHeight(mv.getComponentForm().getHeight());
+		gw.setMapWidth(mv.getComponentForm().getWidth());
 		gw.init();
 		this.show();
 

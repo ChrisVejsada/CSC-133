@@ -31,7 +31,7 @@ public class ScoreView extends Container implements Observer {
 		model = ((GameWorld) gw);
 		gw.addObserver(this);
 		this.setLayout(new FlowLayout(Component.CENTER));
-		this.getAllStyles().setBorder(Border.createLineBorder(4, ColorUtil.GRAY));//migh need to change this
+		this.getAllStyles().setBorder(Border.createLineBorder(4, ColorUtil.GRAY));
 		this.setupLabels();
 		
 		this.add(livesLabel);
@@ -53,7 +53,7 @@ public void setupLabels() {
 		
 		// show number of lives left
 		livesLabel = new Label("Lives: ");
-		livesValue = new Label("" + "model.getLives()");
+		livesValue = new Label("" + model.getLives());
 		livesLabel.getAllStyles().setFgColor(ColorUtil.BLUE);
 		livesValue.getAllStyles().setFgColor(ColorUtil.BLUE);
 

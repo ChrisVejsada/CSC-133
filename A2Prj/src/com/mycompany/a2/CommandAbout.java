@@ -29,7 +29,7 @@ public class CommandAbout extends Command{
 		Command okCommand = new Command("ok");
 		
 		aboutBox.add(new Label ("Robotrac Game"));
-		aboutBox.add(new Label ("v1.1"));
+		aboutBox.add(new Label ("v1.2"));
 		aboutBox.add(new Label ("Created by: Christopher Vejsada"));
 		aboutBox.add(new Label ("CSC 133 A2Prj"));
 		

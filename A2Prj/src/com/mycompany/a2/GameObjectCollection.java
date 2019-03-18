@@ -3,6 +3,8 @@ package com.mycompany.a2;
 import java.util.ArrayList;
 
 public class GameObjectCollection implements ICollection {
+	
+	private Iterator gameObjectIterator = new Iterator();
 	private ArrayList<GameObject> gameObjectList = new ArrayList<GameObject>();
 	
 	private class Iterator implements IIterator{

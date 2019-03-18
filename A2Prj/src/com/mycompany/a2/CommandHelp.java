@@ -26,7 +26,7 @@ public class CommandHelp extends Command {
         Dialog helpBox = new Dialog("Help", new TableLayout(10, 2));
 
         helpBox.add(new Label("Command"));
-        helpBox.add(new Label("Key Binding"));
+        helpBox.add(new Label("Key Bindings"));
         helpBox.add(new Label("Accelerate"));
         helpBox.add(new Label("a"));
         helpBox.add(new Label("Brake"));

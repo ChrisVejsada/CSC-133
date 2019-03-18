@@ -11,6 +11,7 @@ public class Base extends Fixed{
 	public Base(int size, int sequenceNumber, double x, double y) {
 		super(size, x, y);
 		super.setColor(ColorUtil.rgb(0, 255, 0));
+		//this.setSize(10);
 		this.sequenceNumber = sequenceNumber;
 	}
 	//Getter fpr number of base
