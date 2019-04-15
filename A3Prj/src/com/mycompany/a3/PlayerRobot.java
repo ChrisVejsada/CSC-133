@@ -1,0 +1,19 @@
+package com.mycompany.a3;
+
+public class PlayerRobot extends Robot {
+
+	public PlayerRobot(int size, int heading, double x, double y) {
+		super(size, heading, x, y);
+		
+	}
+	//override of toString
+	@Override
+	public String toString() {
+		String parentDesc = super.toString();
+		return "Robot:" + parentDesc;
+	}
+	public void setLastbaseReached(int baseNum) {
+		// TODO Auto-generated method stub
+		
+	}
+}
