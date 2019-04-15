@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a687e52e-54cd-4267-9358-43048909a3b7" name="Default Changelist" comment="" />
+    <list default="true" id="a687e52e-54cd-4267-9358-43048909a3b7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/A1Prj.iml" beforeDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/A1Prj/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1462564358">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -72,7 +85,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
+    <option name="x" value="399" />
+    <option name="y" value="287" />
     <option name="width" value="1680" />
     <option name="height" value="1027" />
   </component>
@@ -82,13 +96,14 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551503530095" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -103,14 +118,6 @@
     </option>
   </component>
   <component name="RunManager" selected="JAR Application.CodeNameOneBuildClient.jar">
-    <configuration name="CodeNameOneBuildClient.jar" type="JarApplication" factoryName="JAR Application">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/A1Prj/CodeNameOneBuildClient.jar" />
-      <method v="2" />
-    </configuration>
-    <configuration name="JavaSE.jar" type="JarApplication" factoryName="JAR Application" temporary="true">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/A1Prj/JavaSE.jar" />
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="#com.codename1.plugin.intellij.run.CodenameOneConfigurationType" factoryName="Codename One">
       <setting name="mainClass" value="" />
       <setting name="vmparams" value="" />
@@ -121,6 +128,18 @@
         <option name="MakeProject" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CodeNameOneBuildClient.jar" type="JarApplication" factoryName="JAR Application">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/A1Prj/CodeNameOneBuildClient.jar" />
+      <method v="2" />
+    </configuration>
+    <configuration name="JavaSE.jar" type="JarApplication" factoryName="JAR Application" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/A1Prj/JavaSE.jar" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="JAR Application.CodeNameOneBuildClient.jar" />
+      <item itemvalue="JAR Application.JavaSE.jar" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JAR Application.JavaSE.jar" />
@@ -165,9 +184,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="1027" extended-state="0" />
+    <frame x="399" y="287" width="1680" height="1027" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25885227" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26234567" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -185,6 +204,7 @@
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" />
+      <window_info anchor="right" id="Maven Projects" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -194,6 +214,9 @@
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
     </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="updating for mac build on intellij" />
