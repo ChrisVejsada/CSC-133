@@ -41,7 +41,7 @@ public class Game extends Form {
 		addKeyListener('b', brakeCommand);
 		addKeyListener('l', leftCommand);
 		addKeyListener('r', rightCommand);
-		addKeyListener('f', energyCommand);
+		addKeyListener('e', energyCommand);
 		addKeyListener('g', robocollideCommand);
 		addKeyListener('t', tickCommand);
 		

@@ -36,7 +36,7 @@ public class CommandHelp extends Command {
         helpBox.add(new Label("Right Turn"));
         helpBox.add(new Label("r"));
         helpBox.add(new Label("Energy"));
-        helpBox.add(new Label("f"));
+        helpBox.add(new Label("e"));
         helpBox.add(new Label("Robo"));
         helpBox.add(new Label("s"));
         helpBox.add(new Label("Tick"));

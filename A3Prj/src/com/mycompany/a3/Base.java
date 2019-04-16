@@ -2,10 +2,14 @@ package com.mycompany.a3;
 
 import com.codename1.charts.util.ColorUtil;
 import java.util.*;
+import com.codename1.charts.models.Point;
+import com.codename1.ui.Dialog;
+import com.codename1.ui.Graphics;
 
-public class Base extends Fixed{
+
+public class Base extends Fixed /*implements IDrawable, ISelectable, ICollider*/{
 	
-
+	private boolean isSelected = false;
 	private int sequenceNumber;
 	//Sets the base color
 	public Base(int size, int sequenceNumber, double x, double y) {
@@ -30,6 +34,7 @@ public class Base extends Fixed{
 		String myDesc = " sequence Number="+sequenceNumber;
 		return "Base:" + parentDesc + myDesc;
 	}
+	
 	
 }
 	
