@@ -80,7 +80,7 @@ public abstract class Robot extends Moveable implements ISteerable {
 	public void setDamage(int damage) {
 		damageLevel += damage;
 	}
-	public void collision(char with) {//Called when a collision with a drone or robot is detected. sets damage and color acordenly 
+	public void collision(char with) {//Called when a collision with a drone or robot is detected. sets damage and color accordenly 
 		if(damageLevel!=100) {
 		if(with=='r') {//robot collision
 			damageLevel += 10;
