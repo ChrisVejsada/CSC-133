@@ -20,6 +20,6 @@ public class CommandGameClockTick extends Command {
      */
     @Override
     public void actionPerformed(ActionEvent ev){
-        gw.tick();
+       // gw.tick();
     }
 }

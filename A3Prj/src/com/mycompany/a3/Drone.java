@@ -3,9 +3,12 @@ package com.mycompany.a3;
 import java.util.Random;
 
 import com.codename1.charts.util.ColorUtil;
+import com.codename1.ui.Graphics;
+import com.codename1.ui.geom.Point;
 
 public class Drone extends Moveable{
 	private Random rand = new Random();
+	private int size;
 	
 	/* Drone Constructor
 	 * @param x
@@ -15,9 +18,10 @@ public class Drone extends Moveable{
 	 * @param speed
 	 */
 
-	public Drone(int size, double x, double  y) {
-		super(size, x, y);
+	public Drone(GameWorld gw,int size, double x, double  y) {
+		super(gw,size, x, y);
 		super.setColor(ColorUtil.rgb(190, 1, 1));
+		this.size =size;
 		setSpeed(randSpeed());
 		setHeading(randHeading());
 	}
@@ -44,6 +48,22 @@ public class Drone extends Moveable{
 	}
 	
 	private int randSpeed() {
-		return 5 + rand.nextInt(5);
+		return 20 + rand.nextInt(25);
+	}
+	@Override
+	public void draw(Graphics g, Point pCmpRelPrnt) {
+		// TODO Auto-generated method stub
+		//super.draw(g, pCmpRelPrnt);
+		int locX = (int)getX() + (int)pCmpRelPrnt.getX();
+        int locY = (int)getY() + (int)pCmpRelPrnt.getY();
+        Point top = new Point(locX, size + locY);
+        Point bottomL = new Point(locX - size, locY - size);
+        Point bottomR = new Point(locX + size, locY - size);
+        //Set as triangle
+        g.setColor(getColor());
+        g.drawLine((int)top.getX(), (int)top.getY(), (int)bottomL.getX(), (int)bottomL.getY());
+        g.drawLine((int)bottomL.getX(), (int)bottomL.getY(), (int)bottomR.getX(), (int)bottomR.getY());
+        g.drawLine((int)top.getX(), (int)top.getY(), (int)bottomR.getX(), (int)bottomR.getY());
+        
 	}
 }

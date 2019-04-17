@@ -1,10 +1,8 @@
 package com.mycompany.a3;
-
 import com.codename1.ui.Command;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Label;
 import com.codename1.ui.events.ActionEvent;
-import com.codename1.ui.*;
 
 public class CommandExit extends Command {
 
@@ -26,19 +24,19 @@ public class CommandExit extends Command {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ev) {
-		//gw.exit();
+		gw.quitGame();
 		Command yes = new Command("yes");
 		Command  no  = new Command("no");
 		
 		Label label1 = new Label("");
 		
-		Command c = Dialog.show("Are you sure you would like to exit?", label1, yes, no);
+		Command c = Dialog.show("Are you sure you would like to exit", label1, yes, no);
 		
 		if(c == yes) {
 			gw.exit();
 		}
 		else if (c == no) {
-			return;
+			gw.dontQuit();
 		}
 	}
 }

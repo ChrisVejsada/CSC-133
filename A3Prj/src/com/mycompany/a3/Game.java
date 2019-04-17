@@ -11,18 +11,40 @@ import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.plaf.Border;
-import java.util.Observable; 
+import java.util.Observable;
+import com.codename1.charts.util.ColorUtil;
+import com.codename1.ui.Button;
+import com.codename1.ui.CheckBox;
+import com.codename1.ui.Command;
+import com.codename1.ui.Component;
+import com.codename1.ui.Container;
+import com.codename1.ui.Form;
+import com.codename1.ui.Label;
+import com.codename1.ui.TextField;
+import com.codename1.ui.Toolbar;
+import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.events.ActionListener;
+import com.codename1.ui.layouts.BorderLayout;
+import com.codename1.ui.layouts.BoxLayout;
+import com.codename1.ui.layouts.GridLayout;
+import com.codename1.ui.plaf.Border;
+import com.codename1.ui.util.UITimer;
 
-public class Game extends Form {
+public class Game extends Form implements Runnable{
 	private GameWorld gw;
 	private ScoreView sv;
 	private MapView mv;
+	private Command pauseCommand;
+	private Button pauseButton;
+	UITimer timer = new UITimer(this);
+	private boolean isSelected = true;
+	private static int mapX, mapY;
+	private BGSound bgSound = new BGSound("MechDrone7.mp3");
 	public Game() {
 		gw = new GameWorld();
 		sv = new ScoreView(gw);
 		mv = new MapView(gw);
-		gw.addObserver(mv); // register the map observer
-		gw.addObserver(sv);
+		
 		//gw.init();
 		//play();
 		this.setLayout(new BorderLayout());
@@ -31,10 +53,14 @@ public class Game extends Form {
 		Command leftCommand = new CommandLeftHeading(gw);
 		Command brakeCommand = new CommandBrake(gw);
 		Command rightCommand = new CommandRightHeading(gw);
-		Command robocollideCommand = new CommandDroneCollision(gw);
-		Command nprcollideCommand = new CommandRobotCollision(gw);
+		//Command robocollideCommand = new CommandDroneCollision(gw);
+		//Command nprcollideCommand = new CommandRobotCollision(gw);
 		Command energyCommand = new CommandEnergyStationCollision(gw);
 		Command tickCommand = new CommandGameClockTick(gw);
+		Command positionCommand;
+		positionCommand = new CommandPosition(gw);
+		pauseCommand = new CommandPause(gw);
+		Command strategyCommand = new StrategyCommand(gw);
 		
 		addKeyListener('x', exitCommand);
 		addKeyListener('a', accelerateCommand);
@@ -42,8 +68,8 @@ public class Game extends Form {
 		addKeyListener('l', leftCommand);
 		addKeyListener('r', rightCommand);
 		addKeyListener('e', energyCommand);
-		addKeyListener('g', robocollideCommand);
-		addKeyListener('t', tickCommand);
+		//addKeyListener('g', robocollideCommand);
+		//addKeyListener('t', tickCommand);
 		
 		//West Container
 		Container westContainer = new Container();
@@ -109,50 +135,23 @@ public class Game extends Form {
 		southContainer.getAllStyles().setBorder(Border.createLineBorder(4, ColorUtil.GRAY));
 		southContainer.setLayout(new FlowLayout(Component.CENTER));
 		
-		//Collide with NPR
-		Button NPRButton = new Button("Collide with NPR");
-		southContainer.addComponent(NPRButton);
-		NPRButton.setCommand(nprcollideCommand);
-		NPRButton.getAllStyles().setFgColor(ColorUtil.WHITE);
-		NPRButton.getAllStyles().setBgColor(ColorUtil.BLUE);
-		NPRButton.getAllStyles().setBgTransparency(255);	
-		NPRButton.getAllStyles().setMarginRight(5);
+		pauseButton = new Button("Pause");
+		southContainer.addComponent(pauseButton);
+		pauseButton.setCommand(pauseCommand);
+		pauseButton.getAllStyles().setFgColor(ColorUtil.WHITE);
+		pauseButton.getAllStyles().setBgColor(ColorUtil.BLUE);
+		pauseButton.getAllStyles().setBgTransparency(255);	
+		pauseButton.getAllStyles().setMarginRight(5);
 		
-		//Collide with base
-		Button baseButton = new Button("Collide with Base");
-		//baseButton.setCommand(baseCommand);
-		baseButton.getAllStyles().setFgColor(ColorUtil.WHITE);
-		baseButton.getAllStyles().setBgColor(ColorUtil.BLUE);
-		baseButton.getAllStyles().setBgTransparency(255);	
-		baseButton.getAllStyles().setMarginRight(5);
-		southContainer.addComponent(baseButton);
-		
-		//Collide with Drone
-		Button collideButton = new Button("Collide with Drone");
-		southContainer.addComponent(collideButton);
-		collideButton.setCommand(robocollideCommand);
-		collideButton.getAllStyles().setFgColor(ColorUtil.WHITE);
-		collideButton.getAllStyles().setBgColor(ColorUtil.BLUE);
-		collideButton.getAllStyles().setBgTransparency(255);	
-		collideButton.getAllStyles().setMarginRight(5);
-		
-		//Collide with Energy
-		Button energyButton = new Button("Collide with Energy Station");
-		southContainer.add(energyButton);
-		energyButton.setCommand(energyCommand);
-		energyButton.getAllStyles().setFgColor(ColorUtil.WHITE);
-		energyButton.getAllStyles().setBgColor(ColorUtil.BLUE);
-		energyButton.getAllStyles().setBgTransparency(255);	
-		energyButton.getAllStyles().setMarginRight(5);
-		
-		//Tick/game time
-		Button tickButton  = new Button("Tick");
-		tickButton.setCommand(tickCommand);
-		southContainer.add(tickButton);
-		tickButton.getAllStyles().setFgColor(ColorUtil.WHITE);
-		tickButton.getAllStyles().setBgColor(ColorUtil.BLUE);
-		tickButton.getAllStyles().setBgTransparency(255);	
-		tickButton.getAllStyles().setMarginRight(5);
+		Button positionButton = new Button("Position");
+		southContainer.addComponent(positionButton);
+		positionButton.setCommand(positionCommand);
+		positionButton.getAllStyles().setFgColor(ColorUtil.WHITE);
+		positionButton.getAllStyles().setBgColor(ColorUtil.BLUE);
+		positionButton.getAllStyles().setBgTransparency(255);	
+		positionButton.getAllStyles().setMarginRight(5);
+		positionButton.getDisabledStyle().setFgColor(ColorUtil.BLUE);
+		positionButton.getDisabledStyle().setBgColor(ColorUtil.WHITE);
 		
 		//setup the toolbar for the gui
 		Toolbar toolbar = new Toolbar();
@@ -182,123 +181,88 @@ public class Game extends Form {
 		gw.setMapWidth(mv.getComponentForm().getWidth());
 		gw.init();
 		this.show();
+		gw.setWidthHeight(mv.getComponentForm().getX(), mv.getComponentForm().getY());
+		gw.setMapHeight(mv.getComponentForm().getHeight());
+		gw.setMapWidth(mv.getComponentForm().getWidth());
+		gw.init();
+		UITimer timer = new UITimer(this);
+		timer.schedule(20, true, this);
 
 
 
-		
-	}	
+		play();
+	}
 	private void play() {
-		Label myLabel = new Label("Enter a Command:");
-		this.addComponent(myLabel);
-		final TextField myTextField = new TextField();
-		this.addComponent(myTextField);
-		this.show();
 		
-		myTextField.addActionListener(new ActionListener(){
-		
-			public void actionPerformed(ActionEvent evt) {
-				
+	}
+	public void playSounds() {
+		if(gw.isSound()) {
+		if(gw.isEnergyCol()) {
+			gw.setEnergyCol(false);
+			Sound energySound = new Sound("evergy.wav", "audio/wav");
+			if(!gw.isIspause())
+				energySound.play();
 			
-				String sCommand = myTextField.getText().toString();
-				myTextField.clear();
-				switch(sCommand.charAt(0)) {
-				case 'x':
-					//System.out.println("Please Confirm to exit");
-					myLabel.setText("Please enter y or n");
-					gw.quitGame();
-					break;
-				
-				case 'a':
-					gw.setRobotSpeed(2);
-					break;
-				
-				case 'b':
-					gw.setRobotSpeed(-2);
-					break;
-				
-				case 'l':
-					gw.changeHeading('l');
-					break;
-				
-				case 'r':
-					gw.changeHeading('r');
-					break;
-				
-				case 'c':
-					gw.robotCollision('r');
-					break;
-				
-				case '1':
-					gw.baseCollision(1);
-					break;
-				
-				case '2':
-					gw.baseCollision(2);
-					break;
-				
-				case '3':
-					gw.baseCollision(3);
-					break;
-				
-				case '4':
-					gw.baseCollision(4);
-					break;
-				
-				case '5':
-					gw.baseCollision(5);
-					break;
-				
-				case '6':
-					gw.baseCollision(6);
-					break;
-				
-				case '7':
-					gw.baseCollision(7);
-					break;
-				
-				case '8':
-					gw.baseCollision(8);
-					break;
-				
-				case '9':
-					gw.baseCollision(9);
-					break;
-				
-				case 'e':
-					gw.energyStationCollision();
-					break;
-				
-				case 'g':
-					gw.robotCollision('d');
-					break;
-				
-				case 't':
-					gw.tick();;
-					break;
-				
-				case 'd':
-					gw.display();
-					break;
-				
-				case 'm':
-					gw.map();
-					break;
-				
-				case 'n':
-					gw.dontQuit();
-					myLabel.setText("Enter a Command:");
-					break;
-				
-				case 'y':
-					gw.exit();
-					break;
-					
-				
-				}
-			}
-		});
+		}
+		if(gw.isCrashCol()) {
+			gw.setCrashCol(false);
+			Sound crashSound = new Sound("crash.wav", "audio/wav");
+			if(!gw.isIspause())
+				crashSound.play();
+		}
+		
+		if(gw.isDeathCol()) {
+			gw.setCrashCol(false);
+			Sound deathSound = new Sound("death.wav", "audio/wav");
+			if(!gw.isIspause())
+				deathSound.play();
+		}
+		if(gw.isIspause()) {
+			bgSound.pause();
+		}else {
+			
+		bgSound.play(gw.isIspause());
+		}
+		
+		}
+		else {
+			bgSound.pause();
+		}
+		
+	}
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		if(gw.isIspause()) {
+			pauseButton.setText("Play");
+			bgSound.pause();
+		}
+		else {
+			pauseButton.setText("Pause");
+			playSounds();
+			gw.tick(20);
+		}
 	}
 	
-}
 	
+}
+		
+		
+
+		
+	
+	
+
+
+	
+	
+
+					
+				
+				
+			
+		
+
+
+
 	

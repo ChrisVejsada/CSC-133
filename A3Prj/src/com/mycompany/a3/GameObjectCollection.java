@@ -7,6 +7,7 @@ public class GameObjectCollection implements ICollection {
 	private Iterator gameObjectIterator = new Iterator();
 	private ArrayList<GameObject> gameObjectList = new ArrayList<GameObject>();
 	
+	
 	private class Iterator implements IIterator{
 		private int currentIndex = 0;
 		
@@ -44,6 +45,10 @@ public class GameObjectCollection implements ICollection {
 	        gameObjectList.add((GameObject) object);
 
 	    }
+	    public void remove(GameObject object)
+		{
+			gameObjectList.remove(object);
+		}
 
 	    @Override
 	    public IIterator getIterator() {

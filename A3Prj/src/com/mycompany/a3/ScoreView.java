@@ -49,7 +49,7 @@ public class ScoreView extends Container implements Observer {
 	// TODO Auto-generated constructor stub
 	}
 	
-public void setupLabels() {
+	public void setupLabels() {
 		
 		// show number of lives left
 		livesLabel = new Label("Lives: ");

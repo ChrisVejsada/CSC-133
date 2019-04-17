@@ -22,7 +22,7 @@ public class CommandEnergyStationCollision extends Command {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ev) {
-		gw.energyStationCollision();
+		//gw.energyStationCollision();
 	}
 	
 }
