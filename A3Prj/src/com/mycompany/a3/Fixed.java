@@ -2,7 +2,7 @@ package com.mycompany.a3;
 
 import com.codename1.ui.geom.Point;
 
-public class Fixed extends GameObject implements ISelectable{
+public abstract class Fixed extends GameObject implements ISelectable{
 	private boolean isSelected;
 	
 	

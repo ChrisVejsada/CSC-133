@@ -17,7 +17,6 @@ import com.codename1.charts.util.ColorUtil;
 		private Random rand = new Random();
 		private int counter = 0;
 		private PlayerRobot robot ;
-		
 		private double nonDisplayClock;
 		private int lives;
 		private GameObject lastCollsion;
@@ -80,18 +79,18 @@ import com.codename1.charts.util.ColorUtil;
 			
 			//Creating Static objects
 			gameObjectList.add(new Base(this,baseSize, 1,500, 500));
-			gameObjectList.add(new Base(this,baseSize, 2,100, 750));
+			gameObjectList.add(new Base(this,baseSize, 2,100, 800));
 			gameObjectList.add(new Base(this,baseSize, 3,400, 400));
 			gameObjectList.add(new Base(this,baseSize, 4,1000, 125));
 			gameObjectList.add(new EnergyStation(this, randObjSize(),randX(),randY()));
 			gameObjectList.add(new EnergyStation(this,randObjSize(),randX(),randY()));
 			
-			//adds player to list
+			//addsplayer robot
 			gameObjectList.add(robot);
 		
-			gameObjectList.add(new NonPlayerRobot(robotSize, 0, 500, 550,this));
-			gameObjectList.add(new NonPlayerRobot(robotSize, 0, 500, 450,this));
-			gameObjectList.add(new NonPlayerRobot(robotSize, 0, 550, 500,this));
+			gameObjectList.add(new NonPlayerRobot(robotSize, 0, 500, 800,this));
+			gameObjectList.add(new NonPlayerRobot(robotSize, 0, 500, 300,this));
+			gameObjectList.add(new NonPlayerRobot(robotSize, 0, 550, 100,this));
 			
 			//creates attack drones
 			gameObjectList.add(new Drone(this, randObjSize(), randX(), randY()));
@@ -153,7 +152,7 @@ import com.codename1.charts.util.ColorUtil;
 				
 			if((robot.getDamageLevel()!=100 && robot.getDamageLevel() <=100) && robot.getEnergyLevel() !=0 && robot.getLives()!=0) {
 				robot.setHeading(robot.getStearingDirection());
-				robot.setEnergyLevel(300);//reduces robot evergy level by 1
+				robot.setEnergyLevel(300);
 				counterTime();
 			
 				IIterator elements = gameObjectList.getIterator();

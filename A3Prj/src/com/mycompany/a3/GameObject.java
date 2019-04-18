@@ -3,7 +3,7 @@ import com.codename1.charts.util.*;
 import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Point;
-public class GameObject implements IDrawable,ICollider{
+public abstract class GameObject implements IDrawable,ICollider{
 
 	private int myColor;
 	private double x = 0;

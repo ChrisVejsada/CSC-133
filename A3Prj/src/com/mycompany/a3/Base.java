@@ -19,7 +19,7 @@ public class Base extends Fixed{
 		super.setColor(ColorUtil.rgb(0, 0, 255));
 		this.sequenceNumber = sequenceNumber;
 	}
-	//Getter fpr number of base
+	
 	public int getSequenceNumber() {
 		return sequenceNumber;
 	}
@@ -37,8 +37,8 @@ public class Base extends Fixed{
 	}
 	@Override
 	public void draw(Graphics g, Point pCmpRelPrnt) {
-		// TODO Auto-generated method stub
-		//super.draw(g, pCmpRelPrnt);
+		
+		//Draws the base and fills in the triangle
 		int locX = (int)x + (int)pCmpRelPrnt.getX();
         int locY = (int)y + (int)pCmpRelPrnt.getY();
         int xx = (int) (pCmpRelPrnt.getX()+this.getX());
@@ -77,11 +77,12 @@ public class Base extends Fixed{
 		return isSelected;
 	}
 	
+	//Draw the base
 	public boolean contains(Point pPtrRelPrnt, Point pCmpRelPrnt) {
-		int px = pPtrRelPrnt.getX(); // pointer location relative to
-		int py = pPtrRelPrnt.getY(); // parents origin
-		int xLoc = (int) (pCmpRelPrnt.getX()+ this.getX());// shape location relative 
-		int yLoc = (int) (pCmpRelPrnt.getY()+ this.getY());// to parents origin
+		int px = pPtrRelPrnt.getX(); 
+		int py = pPtrRelPrnt.getY(); 
+		int xLoc = (int) (pCmpRelPrnt.getX()+ this.getX());
+		int yLoc = (int) (pCmpRelPrnt.getY()+ this.getY());
 		if ( (px >= xLoc) && (px <= xLoc+this.getSize())&& (py >= yLoc) && (py <= yLoc+this.getSize()) )
 		        return true; 
 		else

@@ -83,7 +83,7 @@ public class MapView extends Container implements  Observer{
 			}
 
 			update(model, null);
-			repaint();
+			//repaint();
 			
 		}
 	}
@@ -95,8 +95,8 @@ public class MapView extends Container implements  Observer{
 		//game object info to the console
 		this.repaint();
 		model.map();
-		model = (GameWorld) o;
-		model.addObserver(this);
+		//model = (GameWorld) o;
+		//model.addObserver(this);
 		//model.generateDisplay();
 	
 	}

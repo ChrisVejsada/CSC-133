@@ -25,7 +25,7 @@ public abstract class Robot extends Moveable implements ISteerable {
 	 */
 	public Robot(GameWorld gw,int size, int heading,double x, double y) {//
 		super(gw,size, x, y);
-		super.setSpeed(20);
+		super.setSpeed(10);
 		super.setColor(ColorUtil.rgb(red, 0, 0));
 		this.gw = gw;
 	}
