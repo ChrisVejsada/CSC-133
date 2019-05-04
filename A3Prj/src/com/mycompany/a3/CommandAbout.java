@@ -21,7 +21,7 @@ public class CommandAbout extends Command{
 	
 	/**
 	 * @Override method for action
-	 * updated for game 3
+	 * updated for game 3!
 	 */
 	
 	@Override
