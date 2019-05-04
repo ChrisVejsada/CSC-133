@@ -21,7 +21,9 @@ public class CommandAbout extends Command{
 	
 	/**
 	 * @Override method for action
+	 * updated for game 3
 	 */
+	
 	@Override
 	public void actionPerformed(ActionEvent ev) {
 		
